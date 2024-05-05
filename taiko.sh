@@ -104,7 +104,8 @@ function install_node() {
     sudo docker run hello-world
     
     # 启动 Taiko 节点
-    docker compose up -d
+    docker compose --profile l2_execution_engine --profile prover --profile proposer up -d
+    
     # 获取公网 IP 地址
     public_ip=$(curl -s ifconfig.me)
     original_url="LocalHost:${port_grafana}/d/L2ExecutionEngine/l2-execution-engine-overview?orgId=1&refresh=10s"
@@ -122,7 +123,7 @@ function check_service_status() {
 # 启动节点
 function start_node() {
     cd simple-taiko-node
-    sudo docker compose up -d
+    sudo docker compose --profile l2_execution_engine --profile prover --profile proposer up -d
 }
 
 # 停止节点
