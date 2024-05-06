@@ -46,6 +46,7 @@ function install_node() {
     disable_p2p_sync=false
     read -p "P2P同步[开启：true，不开启false，默认不开启]: " $disable_p2p_sync
     read -p "EVM钱包私钥: " l1_proposer_private_key
+    read -p "EVM钱包私钥: " l2_suggested_fee_recipient
     
     # 检测端口
     local start_port=9000 # 可以根据需要调整起始搜索端口
@@ -84,6 +85,7 @@ function install_node() {
     sed -i "s|L1_ENDPOINT_WS=.*|L1_ENDPOINT_WS=${l1_endpoint_ws}|" .env
     sed -i "s|ENABLE_PROPOSER=.*|ENABLE_PROPOSER=${enable_proposer}|" .env
     sed -i "s|L1_PROPOSER_PRIVATE_KEY=.*|L1_PROPOSER_PRIVATE_KEY=${l1_proposer_private_key}|" .env
+     sed -i "s|L2_SUGGESTED_FEE_RECIPIENT=.*|L2_SUGGESTED_FEE_RECIPIENT=${l2_suggested_fee_recipient}|" .env
     sed -i "s|DISABLE_P2P_SYNC=.*|DISABLE_P2P_SYNC=${disable_p2p_sync}|" .env
     sed -i "s|PORT_L2_EXECUTION_ENGINE_HTTP=.*|PORT_L2_EXECUTION_ENGINE_HTTP=${port_l2_execution_engine_http}|" .env
     sed -i "s|PORT_L2_EXECUTION_ENGINE_WS=.*|PORT_L2_EXECUTION_ENGINE_WS=${port_l2_execution_engine_ws}|" .env
